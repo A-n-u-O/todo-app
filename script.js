@@ -7,27 +7,28 @@ const todoInput = document.querySelector("#todo-input");
 form.addEventListener("submit", function(e) {
     e.preventDefault();
 }) 
-
-
-const todos = [];
 todoInput.addEventListener("keyup", function(e){
     if(e.key === "Enter"){
+        let todos = JSON.parse(localStorage.getItem("list")) || []
         //add todos
         todos.push(e.target.value);
-        newTodo(value);
+        newTodo(todoInput.value);
         todoInput.value = " ";
-        console.log(newTodo());
+        console.log(todos);
     }
 })
 
-function newTodo(value){
+
+function newTodo(){
+    // JSON.parse(localStorage.getItem('list'));
+    for (let i = 0; i < todos.length; i++){
     const todo = document.createElement("div");
     const todoText = document.createElement("p");
     const todoCheckBox = document.createElement("input");
     const todoCheckBoxLabel = document.createElement("label");
     const todoCross = document.createElement("span");
    
-    todoText.textContent = value;
+    todoText.textContent = items;
     todoCheckBox.type= "checkbox";
     todoCheckBox.name= "name";
     todoCheckBoxLabel.htmlFor = "checkbox";
@@ -59,3 +60,5 @@ function newTodo(value){
     todo.appendChild(todoText);
     todo.appendChild(todoCross);
 }
+}
+    
