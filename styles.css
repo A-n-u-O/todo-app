@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans%3Awght%40400%3B700&display=swap%27%29%3B');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: hsl(235, 21%, 11%);
+}
+.top-img{
+    width: 100%;
+    height: 225px;
+    background-size: cover;
+    background-image: url(./images/bg-mobile-dark.jpg);
+}
+main{
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    padding: 25px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    letter-spacing: 10px;
+    padding-top: 10px;
+}
+.toggle-btn{
+    background: url(./images/icon-sun.svg);
+    width: 30px;
+    height: 30px;
+    background-size: cover;
+}
+#todo-form .type-todo{
+    margin-top: 10%;
+    background-color:  hsl(235, 24%, 19%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.circle {
+    appearance: none;
+    background-color: transparent;
+    margin-left: 1rem;
+    width: 1.5rem;
+    height: 1.3rem;
+    border: 1px solid hsl(234, 11%, 52%);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease-in-out;
+  }
+#todo-input{
+    border: none;
+    outline: none;
+    font-family: inherit;
+    background-color: hsl(235, 24%, 19%);
+    color: hsl(234, 39%, 85%);
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+}
+.todo-input:focus{
+    outline: none;
+}
+.todos{
+    margin-top: 24px;
+}
+.todo{
+    background: hsl(235, 24%, 19%);
+    width: 100%;
+    height: 55px;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+}
+.todo input[type = "checkbox"]{
+    display: none;
+}
+.active{
+    position: relative;
+    background-image: linear-gradient (hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+.active::before{
+    content: "✔";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+}
