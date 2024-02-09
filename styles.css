@@ -5,7 +5,10 @@
     box-sizing: border-box;
 }
 body{
+    font-size: 1.125rem;
+    font-family: "Josefin Sans", sans-serif;
     background-color: hsl(235, 21%, 11%);
+    min-height: 100vh;
 }
 .top-img{
     width: 100%;
@@ -39,10 +42,14 @@ header{
     background-color:  hsl(235, 24%, 19%);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     border-radius: 5px;
+    padding: 3rem 1.5rem;
+    margin: 0 auto;
+    max-width: 30rem;
+    position: relative;
 }
-.circle {
+.circle,.checkbox {
     appearance: none;
     background-color: transparent;
     margin-left: 1rem;
@@ -60,12 +67,20 @@ header{
     font-family: inherit;
     background-color: hsl(235, 24%, 19%);
     color: hsl(234, 39%, 85%);
-    padding: 1rem;
-    width: 100%;
+    padding: 3rem 1.5rem;
     border-radius: 5px;
+    margin: 0 auto;
+    position: relative;
+    max-width: 30rem;
 }
 .todo-input:focus{
     outline: none;
+}
+.wrapper {
+    padding: 3rem 1.5rem;
+    margin: 0 auto;
+    max-width: 30rem;
+    position: relative;
 }
 .todos{
     margin-top: 24px;
@@ -80,7 +95,7 @@ header{
     padding: 10px;
     font-size: 20px;
 }
-.todos li {
+.todos li, .filters {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -93,6 +108,7 @@ header{
     border-bottom: 1px solid hsl(237, 14%, 26%);
     cursor: pointer;
     color: white;
+    margin-top: 10px;
   }
   .todos li:first-child {
     border-radius: 5px 5px 0 0;
@@ -112,13 +128,16 @@ header{
 
 .active{
     position: relative;
-    background-image: linear-gradient (hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 }
 .active::before{
     content: "✔";
     position: absolute;
     width: 10px;
     height: 10px;
+}
+.cross{
+    cursor: pointer;
 }
 /* .circleCheck{
     background-color: transparent;

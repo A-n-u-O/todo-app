@@ -1,14 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#todo-form");
+const form = document.querySelector("#todo-form");
 const todoInput = document.querySelector("#todo-input");
-const todosWrapper = document.querySelector(".todos");
-let todos = JSON.parse(localStorage.getItem("list")) || [];
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 });
 
 todoInput.addEventListener("keyup", function (e) {
+let todos = JSON.parse(localStorage.getItem("list")) || [];
   if (e.key === "Enter") {
     todos.push({
       value: e.target.value,
@@ -24,6 +23,7 @@ todoInput.addEventListener("keyup", function (e) {
 });
 
 function displayTodos(todos) {
+  const todosWrapper = document.querySelector(".todos");
   while (todosWrapper.firstChild) {
     todosWrapper.removeChild(todosWrapper.firstChild);
   }
@@ -52,12 +52,14 @@ function displayTodos(todos) {
 // All button
 const all = document.getElementById("all");
 all.addEventListener("click", function (e) {
+let todos = JSON.parse(localStorage.getItem("list")) || [];
   displayTodos(todos);
 });
 
 // Active button
 const active = document.getElementById("active");
 active.addEventListener("click", function (e) {
+let todos = JSON.parse(localStorage.getItem("list")) || [];
   const filteredTodos = todos.filter((item) => !item.checked);
   displayTodos(filteredTodos);
 });
@@ -65,6 +67,7 @@ active.addEventListener("click", function (e) {
 // Completed button
 const completed = document.getElementById("completed");
 completed.addEventListener("click", function (e) {
+let todos = JSON.parse(localStorage.getItem("list")) || [];
   const completedTodos = todos.filter((item) => item.checked);
   displayTodos(completedTodos);
 });
@@ -72,6 +75,7 @@ completed.addEventListener("click", function (e) {
 //clear completed
 const clearCompleted = document.getElementById("clearCompleted");
 clearCompleted.addEventListener("click", function(e){
+    let todos = JSON.parse(localStorage.getItem("list")) || [];
     const completedTodos = todos.filter(item => item.checked);
     completedTodos.forEach(completedTodo => {
         // Remove the completed todo from the todos array
@@ -91,12 +95,14 @@ function createTodoElement(item, index) {
 
   todoText.textContent = item.value;
   todoCheckBox.type = "checkbox";
-
+  todoCross.setAttribute("data-id", `${item.value}-${index}`)
   todoCheckBox.addEventListener("click", function (e) {
-    todoText.style.textDecoration = e.target.checked ? "line-through" : "none";
-    todoCheckBox.classList.toggle("active", e.target.checked);
+  todoText.style.textDecoration = e.target.checked ? "line-through" : "none";
+  todoCheckBox.classList.toggle("active", e.target.checked);
 
-    todos = todos.map((t, i) => {
+    let todos = JSON.parse(localStorage.getItem("list")) || [];
+    const updatedtodos = todos.map((t, i) => {
+        console.log(e.srcElement);
       if (`${t.value}-${i}` === e.srcElement.name) {
         return { ...t, checked: e.srcElement.checked };
       } else {
@@ -104,12 +110,19 @@ function createTodoElement(item, index) {
       }
     });
 
-    localStorage.setItem("list", JSON.stringify(todos));
+    localStorage.setItem("list", JSON.stringify(updatedtodos));
   });
 
   todoCross.textContent = "X";
   todoCross.addEventListener("click", function (e) {
-    e.target.parentElement.remove();
+    const del = e.target.getAttribute("data-id");
+    let todos = JSON.parse(localStorage.getItem("list")) || [];
+    const updatedtodos = todos.filter((t, i) =>  
+    `${t.value}-${i}`!== del
+    );
+    displayTodos(updatedtodos);
+    localStorage.setItem("list", JSON.stringify(updatedtodos));
+    
   });
 
   todo.classList.add("todo");
