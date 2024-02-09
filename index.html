@@ -23,10 +23,28 @@
     </header>
     <form action="#" id="todo-form">
       <div class="type-todo">
-        <span onclick="changeTheme()" class="circle"></span>
-        <input type="text" id="todo-input">
+        <label onclick="changeTheme()" class="circle"></label>
+        <input type="text" id="todo-input"  placeholder = "Create a new todo...">
       </div>
-    <div class="todos"></div>
+      <div class="wrapper">
+        <ul class="todos">
+        </ul>
+  
+        <div class="items">
+          <div class="left-items">
+            <span id="remain">items left</span>
+            <span class="remaining-tasks"></span>
+          </div>
+          <span class="clearCompleted">Clear completed</span>
+        </div>
+  
+        <div id="controls">
+          <div class="filters">
+            <button type="button" class="active" id="all">All</button>
+            <button type="button" id="remain">Active</button>
+            <button type="button" id="completed">Completed</button>
+          </div>
+        </div>
     </form>
   </main>
   
