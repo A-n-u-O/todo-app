@@ -92,7 +92,7 @@ header{
     width: 100%;
     border-bottom: 1px solid hsl(237, 14%, 26%);
     cursor: pointer;
-    color: (234, 39%, 85%);
+    color: white;
   }
   .todos li:first-child {
     border-radius: 5px 5px 0 0;
@@ -128,3 +128,8 @@ header{
     border: 1px solid hsl(234, 11%, 52%);
     border-radius: 50%;
 } */
+.items, .controls{
+    font-size: 30px;
+    color: white;
+
+}
