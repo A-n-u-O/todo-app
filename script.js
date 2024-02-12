@@ -88,63 +88,60 @@ clearCompleted.addEventListener("click", function(e){
 });
 
 function createTodoElement(item, index) {
-  const todo = document.createElement("div");
-  const todoCheckBox = document.createElement("input");
-  const todoText = document.createElement("label");
-  const todoCross = document.createElement("span");
-
-  todoText.textContent = item.value;
-  todoCheckBox.type = "checkbox";
-  todoCross.setAttribute("data-id", `${item.value}-${index}`)
-  todoCheckBox.addEventListener("click", function (e) {
-  todoText.style.textDecoration = e.target.checked ? "line-through" : "none";
-  todoCheckBox.classList.toggle("active", e.target.checked);
-
-    let todos = JSON.parse(localStorage.getItem("list")) || [];
-    const updatedtodos = todos.map((t, i) => {
-        console.log(e.srcElement);
-      if (`${t.value}-${i}` === e.srcElement.name) {
-        return { ...t, checked: e.srcElement.checked };
-      } else {
-        return t;
-      }
+    const todo = document.createElement("div");
+    const todoCheckBox = document.createElement("input");
+    const todoText = document.createElement("label");
+    const todoCross = document.createElement("span");
+  
+    todoText.textContent = item.value;
+    todoCheckBox.type = "checkbox";
+    todoCross.setAttribute("data-id", `${item.value}-${index}`);
+    todoCheckBox.addEventListener("click", function (e) {
+      todoText.style.textDecoration = e.target.checked ? "line-through" : "none";
+      todoCheckBox.classList.toggle("active", e.target.checked);
+  
+      let todos = JSON.parse(localStorage.getItem("list")) || [];
+      const updatedtodos = todos.map((t, i) => {
+        if (`${t.value}-${i}` === e.srcElement.name) {
+          return { ...t, checked: e.srcElement.checked };
+        } else {
+          return t;
+        }
+      });
+  
+      localStorage.setItem("list", JSON.stringify(updatedtodos));
     });
-
-    localStorage.setItem("list", JSON.stringify(updatedtodos));
-  });
-
-  todoCross.textContent = "X";
-  todoCross.addEventListener("click", function (e) {
-    const del = e.target.getAttribute("data-id");
-    let todos = JSON.parse(localStorage.getItem("list")) || [];
-    const updatedtodos = todos.filter((t, i) =>  
-    `${t.value}-${i}`!== del
-    );
-    displayTodos(updatedtodos);
-    localStorage.setItem("list", JSON.stringify(updatedtodos));
-    
-  });
-
-  todo.classList.add("todo");
-  todoCheckBox.classList.add("circle");
-  todoCross.classList.add("cross");
-
-  todo.appendChild(todoCheckBox);
-  todo.appendChild(todoText);
-  todo.appendChild(todoCross);
-
-  todoCheckBox.name = `${item.value}-${index}`;
-  todoCheckBox.classList = "checkbox";
-  todoCheckBox.type = "checkbox";
-
-  todoText.htmlFor = `${item.value}-${index}`;
-  todoText.textContent = item.value;
-
-  todoCheckBox.checked = item.checked;
-
-  return todo;
-}
-
+  
+    todoCross.textContent = "X";
+    todoCross.addEventListener("click", function (e) {
+      const del = e.target.getAttribute("data-id");
+      let todos = JSON.parse(localStorage.getItem("list")) || [];
+      const updatedtodos = todos.filter((t, i) => `${t.value}-${i}` !== del);
+      displayTodos(updatedtodos);
+      localStorage.setItem("list", JSON.stringify(updatedtodos));
+    });
+  
+    todo.classList.add("todo");
+    todoCheckBox.classList.add("circle", "checkbox"); // Add both classes here
+    todoCross.classList.add("cross");
+  
+    todo.appendChild(todoCheckBox);
+    todo.appendChild(todoText);
+    todo.appendChild(todoCross);
+  
+    todoCheckBox.name = `${item.value}-${index}`;
+    todoText.htmlFor = `${item.value}-${index}`;
+    todoText.textContent = item.value;
+  
+    todoCheckBox.checked = item.checked;
+  
+    if (item.checked) {
+      todo.classList.add("label"); // Add the "label" class for completed todos
+    }
+  
+    return todo;
+  }
+  
 function displayFilteredTodos(filteredTodos) {
   while (todosWrapper.firstChild) {
     todosWrapper.removeChild(todosWrapper.firstChild);
@@ -154,6 +151,7 @@ function displayFilteredTodos(filteredTodos) {
     const todo = createTodoElement(item, index);
     todosWrapper.appendChild(todo);
   });
+  styleActiveTodos(filteredTodos);
 }
 
 function displayCompletedTodos(completedTodos) {
@@ -165,7 +163,26 @@ function displayCompletedTodos(completedTodos) {
         const todo = createTodoElement(item, index);
         todosWrapper.appendChild(todo);
       });
+      styleCompletedTodos(completedTodos);
 }
+function styleCompletedTodos(completedTodos) {
+    completedTodos.forEach(todo => {
+        const todoElement = document.querySelector(`[data-id="${todo.value}-${todo.index}"]`);
+        if (todoElement) {
+            todoElement.classList.add("label");
+        }
+    });
+}
+
+function styleActiveTodos(activeTodos) {
+    activeTodos.forEach(todo => {
+        const todoElement = document.querySelector(`[data-id="${todo.value}-${todo.index}"]`);
+        if (todoElement) {
+            todoElement.classList.remove("label");
+        }
+    });
+}
+
 // Load event listener
 window.addEventListener(
   "load",
