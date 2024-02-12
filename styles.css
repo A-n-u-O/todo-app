@@ -88,9 +88,9 @@ form{
     max-width: 35rem;
 }
 
-#todo-input::placeholder {
+/* #todo-input::placeholder {
     color: hsl(234, 39%, 85%);
-}
+} */
 
 .todo-input:focus{
     outline: none;
