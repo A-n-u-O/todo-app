@@ -92,7 +92,15 @@ function createTodoElement(item, index) {
     const todoCheckBox = document.createElement("input");
     const todoText = document.createElement("label");
     const todoCross = document.createElement("span");
-  
+    const todoCrosssvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+todoCrosssvg.setAttribute("viewBox", "0 0 24 24");
+todoCrosssvg.setAttribute("fill", "none");
+todoCrosssvg.innerHTML = `
+  <path d="M17.25 17.25L6.75 6.75" stroke="hsl(234, 11%, 52%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M17.25 6.75L6.75 17.25" stroke="hsl(234, 11%, 52%)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+`;
+todoCross.appendChild(todoCrosssvg);
+
     todoText.textContent = item.value;
     todoCheckBox.type = "checkbox";
     todoCross.setAttribute("data-id", `${item.value}-${index}`);
@@ -123,7 +131,7 @@ function createTodoElement(item, index) {
   
     todo.classList.add("todo");
     todoCheckBox.classList.add("circle", "checkbox"); // Add both classes here
-    todoCross.classList.add("cross");
+    todoCross.classList.add("remove-task");
   
     todo.appendChild(todoCheckBox);
     todo.appendChild(todoText);

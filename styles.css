@@ -38,7 +38,7 @@ header{
     background-size: cover;
 }
 form{
-    margin-top: 12%;
+    margin-top: 10%;
 }
 #todo-form .type-todo{
     /* margin-top: 30%; */
@@ -191,8 +191,67 @@ form{
     background-color: hsl(237, 14%, 26%);
   }
   
-  .todos li div {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+ .wrapper .todos div input[type="checkbox"] {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid hsl(233, 11%, 84%);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]:hover {
+    border: 1px solid transparent;
+    background: linear-gradient(hsl(0, 0%, 98%), hsl(0, 0%, 98%)) padding-box,
+      linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    border-radius: 50%;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]::before {
+    content: "\2713";
+    color: hsl(0, 0%, 98%);
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]:checked {
+    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    border: none;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+  
+  /* REMOVE TASK */
+  .remove-task {
+    border: 0;
+    padding: 0.25rem;
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  
+  .remove-task svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .remove-task svg path {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .remove-task:hover svg path {
+    stroke: hsl(235, 19%, 35%);
+    transform: scale(1.1);
+  }
+  
+  .remove-task:active svg {
+    transform: scale(0.8);
   }
