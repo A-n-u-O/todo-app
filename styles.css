@@ -306,3 +306,11 @@ form{
   .clearCompleted:hover {
     color: var(--filter-task-hover);
   }
+
+
+/* MEDIA QUERIES */
+@media (min-width: 820px) {
+    .header {
+      background-image: url(./images/bg-desktop-dark.jpg);
+    }
+  }
