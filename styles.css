@@ -76,17 +76,20 @@ form{
     transition: all 0.2s ease-in-out;
   }
 
-#todo-input{
+  #todo-input {
     border: none;
     outline: none;
     font-family: inherit;
     background-color: hsl(235, 24%, 19%);
     color: hsl(234, 39%, 85%);
-    padding: 1rem 0.5rem;
+    padding: 1rem;
     border-radius: 5px;
-    /* margin: 10px; */
-    /* position: relative; */
-    max-width: 25rem;
+    width: 100%; /* Use width: 100% to ensure the input takes the full width */
+    max-width: 35rem;
+}
+
+#todo-input::placeholder {
+    color: hsl(234, 39%, 85%);
 }
 
 .todo-input:focus{
