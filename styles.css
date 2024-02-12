@@ -100,6 +100,9 @@ form{
     border-radius: 5px;
     font-size: 20px;
 }
+.todo label{
+    background: hsl(235, 24%, 19%);;
+}
 .todos li, .filters {
     display: flex;
     align-items: center;
