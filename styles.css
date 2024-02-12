@@ -1,21 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans%3Awght%40400%3B700&display=swap%27%29%3B');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
     font-size: 1.125rem;
     font-family: "Josefin Sans", sans-serif;
     background-color: hsl(235, 21%, 11%);
     min-height: 100vh;
 }
+
 .top-img{
     width: 100%;
     height: 225px;
     background-size: cover;
     background-image: url(./images/bg-mobile-dark.jpg);
 }
+
 main{
     position: absolute;
     top: 0;
@@ -23,6 +27,7 @@ main{
     width: 100%;
     padding: 25px;
 }
+
 header{
     display: flex;
     justify-content: space-between;
@@ -31,15 +36,20 @@ header{
     letter-spacing: 10px;
     padding-top: 10px;
 }
+
+/* themeswitcher */
 .toggle-btn{
     background: url(./images/icon-sun.svg);
     width: 30px;
     height: 30px;
     background-size: cover;
 }
+
 form{
     margin-top: 10%;
 }
+
+/* input for new task  */
 #todo-form .type-todo{
     /* margin-top: 30%; */
     background-color:  hsl(235, 24%, 19%);
@@ -52,7 +62,8 @@ form{
     max-width: 28rem;
     position: relative;
 }
-.circle,.checkbox {
+
+.circle, .checkbox {
     appearance: none;
     background-color: transparent;
     margin-left: 1rem;
@@ -64,6 +75,7 @@ form{
     place-content: center;
     transition: all 0.2s ease-in-out;
   }
+
 #todo-input{
     border: none;
     outline: none;
@@ -76,18 +88,60 @@ form{
     /* position: relative; */
     max-width: 25rem;
 }
+
 .todo-input:focus{
     outline: none;
 }
+
+/* display new tasks */
 .wrapper {
     padding: 0.5rem 0.25rem;
     margin: 0 auto;
     max-width: 29rem;
     position: relative;
 }
+
+.wrapper .todos div input[type="checkbox"] {
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid hsl(233, 11%, 84%);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+  
+  .wrapper .todos div input[type="checkbox"]:hover {
+    border: 1px solid transparent;
+    background: linear-gradient(hsl(0, 0%, 98%), hsl(0, 0%, 98%)) padding-box,
+      linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    border-radius: 50%;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]::before {
+    content: "\2713";
+    color: hsl(0, 0%, 98%);
+    transform: scale(0);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]:checked {
+    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    border: none;
+  }
+  
+  .wrapper .todos div input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
 .todos{
     margin-top: 24px;
 }
+
 .todo{
     background: hsl(235, 24%, 19%);
     width: 100%;
@@ -100,25 +154,39 @@ form{
     border-radius: 5px;
     font-size: 20px;
 }
-.todo label{
-    background: hsl(235, 24%, 19%);;
-}
-.todos li, .filters {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: none;
-    outline: none;
-    font-family: inherit;
-    background-color: hsl(235, 24%, 19%);
-    padding: 1rem;
-    /* max-width: 28rem; */
-    cursor: pointer;
-    color: white;
-    margin-top: 10px;
-    border-radius: 5px;
-  }
 
+.todo label{
+    background: hsl(235, 24%, 19%);
+}
+
+#controls {
+    background-color: hsl(235, 24%, 19%);
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 1.5rem;
+}
+
+.filters {
+    background-color: hsl(235, 24%, 19%);
+  color: hsl(234, 11%, 52%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: 0 0 5px 5px;
+  padding: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  }
+/* .filters .active{
+    display: flex;
+   flex-direction: row-reverse;
+   gap: 6px;
+   font-size: clamp(0.7rem, 3vw, 1rem);
+} */
   .filters button {
     margin-left: 1rem;
     background-color: transparent;
@@ -137,18 +205,18 @@ form{
   .filters button.active {
     color: hsl(220, 98%, 61%);
 }
-  .todos li:first-child {
+  /* .todos li:first-child {
     border-radius: 5px 5px 0 0;
-  }
+  } */
   
-  .todos li span {
+  /* .todos li span {
     font-size: clamp(0.5rem, 3vw, 1rem);
     font-weight: 700;
     padding: 5px;
     border-radius: 5px;
     color: hsl(234, 39%, 85%);
     transition: all 0.2s ease-in-out;
-  }
+  } */
 /* .todo input[type = "checkbox"]{
     display: none;
 } */
@@ -194,42 +262,7 @@ form{
     background-color: hsl(237, 14%, 26%);
   }
   
- .wrapper .todos div input[type="checkbox"] {
-    appearance: none;
-    background-color: transparent;
-    border: 1px solid hsl(233, 11%, 84%);
-    border-radius: 50%;
-    display: grid;
-    place-content: center;
-    transition: all 0.2s ease-in-out;
-    margin: 0;
-    width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;
-  }
-  
-  .wrapper .todos div input[type="checkbox"]:hover {
-    border: 1px solid transparent;
-    background: linear-gradient(hsl(0, 0%, 98%), hsl(0, 0%, 98%)) padding-box,
-      linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
-    border-radius: 50%;
-  }
-  
-  .wrapper .todos div input[type="checkbox"]::before {
-    content: "\2713";
-    color: hsl(0, 0%, 98%);
-    transform: scale(0);
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .wrapper .todos div input[type="checkbox"]:checked {
-    background-image: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-    border: none;
-  }
-  
-  .wrapper .todos div input[type="checkbox"]:checked::before {
-    transform: scale(1);
-  }
+ 
   
   /* REMOVE TASK */
   .remove-task {
@@ -257,4 +290,19 @@ form{
   
   .remove-task:active svg {
     transform: scale(0.8);
+  }
+
+  .active {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 6px;
+    font-size: clamp(0.7rem, 3vw, 1rem);
+  }
+  
+  .clearCompleted {
+    font-size: clamp(0.7rem, 3vw, 1rem);
+  }
+  
+  .clearCompleted:hover {
+    color: var(--filter-task-hover);
   }
